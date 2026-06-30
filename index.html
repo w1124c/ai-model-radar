@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>AI Model Radar — AIモデル・コーディング・MCP監視ダッシュボード</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400..700&family=Inter:wght@400..700&family=Noto+Sans+JP:wght@400..700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./base.css" />
+<link rel="stylesheet" href="./style.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%234fd1c5' stroke-width='2'/%3E%3Cpath d='M16 16 L16 4' stroke='%234fd1c5' stroke-width='2'/%3E%3Ccircle cx='22' cy='12' r='3' fill='%234fd1c5'/%3E%3C/svg%3E" />
+</head>
+<body>
+<a class="sr-only" href="#main">メインコンテンツへスキップ</a>
+
+<!-- Login gate -->
+<div class="lock-overlay" id="lock-overlay" hidden>
+  <form class="lock-card" id="lock-form" autocomplete="on">
+    <svg class="logo" aria-hidden="true" viewBox="0 0 32 32" width="40" height="40" fill="none">
+      <circle cx="16" cy="16" r="13" stroke="currentColor" stroke-width="1.5" opacity="0.9"/>
+      <circle cx="16" cy="16" r="7.5" stroke="currentColor" stroke-width="1" opacity="0.35"/>
+      <path d="M16 16 L25.5 8.5" stroke="currentColor" stroke-width="1.5"/>
+      <circle cx="22" cy="11" r="2.6" fill="var(--color-primary)" stroke="none"/>
+      <circle cx="16" cy="16" r="1.6" fill="currentColor" stroke="none"/>
+    </svg>
+    <h2 class="lock-title">AI Model Radar</h2>
+    <p class="lock-desc">メールアドレスとパスワードでログイン</p>
+    <input type="email" id="lock-email" placeholder="メールアドレス" autocomplete="username" aria-label="メールアドレス" required />
+    <input type="password" id="lock-pass" placeholder="パスワード" autocomplete="current-password" aria-label="パスワード" required />
+    <label class="lock-remember"><input type="checkbox" id="lock-remember" checked /> この端末でログインを保持</label>
+    <button type="submit" class="lock-submit">ログイン</button>
+    <p class="lock-error" id="lock-error" hidden>メールアドレスまたはパスワードが違います</p>
+  </form>
+</div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand">
+      <svg class="logo" aria-label="AI Model Radar ロゴ" viewBox="0 0 32 32" width="28" height="28" fill="none">
+        <circle cx="16" cy="16" r="13" stroke="currentColor" stroke-width="1.5" opacity="0.9"/>
+        <circle cx="16" cy="16" r="7.5" stroke="currentColor" stroke-width="1" opacity="0.35"/>
+        <path d="M16 16 L25.5 8.5" stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="22" cy="11" r="2.6" fill="var(--color-primary)" stroke="none"/>
+        <circle cx="16" cy="16" r="1.6" fill="currentColor" stroke="none"/>
+      </svg>
+      <div class="brand-text">
+        <span class="brand-name">AI Model Radar</span>
+        <span class="brand-sub">AIモデル / コーディング / MCP 監視ダッシュボード</span>
+      </div>
+    </div>
+    <div class="header-meta">
+      <span class="updated-at" id="updated-at" aria-live="polite"></span>
+      <button class="header-btn" id="admin-btn" hidden>管理者</button>
+      <button class="header-btn" id="logout-btn" hidden>ログアウト</button>
+      <button data-theme-toggle aria-label="ライトモードに切り替え" class="theme-toggle"></button>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="container" hidden>
+
+  <!-- KPI row -->
+  <section class="kpi-row" id="kpi-row" aria-label="サマリー">
+    <div class="kpi-card">
+      <span class="kpi-label">過去24時間</span>
+      <span class="kpi-value" id="kpi-today">–</span>
+      <span class="kpi-unit">件の新着</span>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-label">過去7日間</span>
+      <span class="kpi-value" id="kpi-week">–</span>
+      <span class="kpi-unit">件のリリース</span>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-label">主要ラボ(累計)</span>
+      <span class="kpi-value" id="kpi-lab">–</span>
+      <span class="kpi-unit">件</span>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-label">OSS(累計)</span>
+      <span class="kpi-value" id="kpi-oss">–</span>
+      <span class="kpi-unit">件</span>
+    </div>
+    <div class="kpi-card kpi-chart-card">
+      <span class="kpi-label">日別リリース数(14日)</span>
+      <div class="bar-chart" id="bar-chart" role="img" aria-label="日別リリース数の棒グラフ"></div>
+    </div>
+  </section>
+
+  <!-- Situation analysis -->
+  <section class="analysis-panel" id="analysis-panel" aria-label="状況分析" hidden>
+    <div class="analysis-head">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>
+      <h2 class="analysis-title">状況分析</h2>
+      <span class="analysis-date" id="analysis-date"></span>
+    </div>
+    <p class="analysis-headline" id="analysis-headline"></p>
+    <ul class="analysis-points" id="analysis-points" role="list"></ul>
+    <p class="analysis-body" id="analysis-body"></p>
+  </section>
+
+  <!-- View tabs -->
+  <div class="view-tabs" id="view-tabs" role="group" aria-label="表示切り替え"></div>
+
+  <!-- Filters -->
+  <section class="filters" aria-label="フィルタ">
+    <div class="filter-group" id="type-filters" role="group" aria-label="提供元で絞り込み">
+      <button class="chip is-active" data-type="all">すべて</button>
+      <button class="chip" data-type="major-lab">主要ラボ</button>
+      <button class="chip" data-type="open-source">オープンソース</button>
+    </div>
+    <div class="filter-group" id="category-filters" role="group" aria-label="カテゴリで絞り込み">
+      <button class="chip is-active" data-category="all">全カテゴリ</button>
+      <button class="chip" data-category="image"><span class="dot dot-image"></span>画像</button>
+      <button class="chip" data-category="video"><span class="dot dot-video"></span>動画</button>
+      <button class="chip" data-category="3d"><span class="dot dot-3d"></span>3D</button>
+      <button class="chip" data-category="audio"><span class="dot dot-audio"></span>音声</button>
+      <button class="chip" data-category="llm"><span class="dot dot-llm"></span>LLM</button>
+      <button class="chip" data-category="multimodal"><span class="dot dot-multimodal"></span>マルチモーダル</button>
+      <button class="chip" data-category="coding"><span class="dot dot-coding"></span>コーディング</button>
+      <button class="chip" data-category="mcp"><span class="dot dot-mcp"></span>MCP</button>
+      <button class="chip" data-category="tool"><span class="dot dot-tool"></span>ツール</button>
+    </div>
+    <div class="search-wrap">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input type="search" id="search" placeholder="モデル名・組織名で検索" aria-label="モデル名・組織名で検索" />
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="timeline" id="timeline" aria-label="リリースタイムライン"></section>
+
+  <div class="empty-state" id="empty-state" hidden>
+    <svg viewBox="0 0 32 32" width="40" height="40" fill="none" aria-hidden="true">
+      <circle cx="16" cy="16" r="13" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+      <path d="M16 16 L25.5 8.5" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+    </svg>
+    <p>条件に一致する項目はありません</p>
+    <button class="chip" id="reset-filters">フィルタをリセット</button>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <p>毎朝 9:00 JST に自動更新</p>
+</footer>
+
+<!-- Admin modal -->
+<div class="modal-overlay" id="admin-modal" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="admin-modal-title">
+    <div class="modal-head">
+      <h2 id="admin-modal-title">管理者画面 — アカウント管理</h2>
+      <button class="modal-close" id="admin-close" aria-label="閉じる">✕</button>
+    </div>
+
+    <div class="modal-body">
+      <table class="user-table" id="user-table">
+        <thead>
+          <tr><th>メールアドレス</th><th>権限</th><th>閲覧範囲</th><th></th></tr>
+        </thead>
+        <tbody id="user-tbody"></tbody>
+      </table>
+
+      <div class="user-form" id="user-form">
+        <h3 id="form-title">アカウントを追加</h3>
+        <div class="form-row">
+          <label>メールアドレス</label>
+          <input type="email" id="f-email" placeholder="user@example.com" autocomplete="off" />
+        </div>
+        <div class="form-row">
+          <label>パスワード <span class="hint">(設定/再設定)</span></label>
+          <div class="pw-row">
+            <input type="text" id="f-pass" placeholder="パスワード" autocomplete="off" />
+            <button type="button" class="mini-btn" id="f-genpass">自動生成</button>
+          </div>
+        </div>
+        <div class="form-row">
+          <label>閲覧範囲</label>
+          <div class="perm-checks">
+            <label><input type="checkbox" id="p-releases" checked /> モデルリリース</label>
+            <label><input type="checkbox" id="p-news" checked /> ニュース・噂</label>
+            <label><input type="checkbox" id="p-analysis" checked /> 状況分析</label>
+          </div>
+        </div>
+        <div class="form-row">
+          <label><input type="checkbox" id="f-admin" /> 管理者権限を付与（全範囲＋ユーザー管理）</label>
+        </div>
+        <div class="form-actions">
+          <button class="lock-submit" id="f-save">保存</button>
+          <button class="mini-btn" id="f-cancel" hidden>編集をキャンセル</button>
+        </div>
+        <p class="form-msg" id="form-msg" hidden></p>
+      </div>
+
+      <div class="persist-box">
+        <h3>変更の保存先</h3>
+        <p class="persist-desc">変更はこの画面上で即時反映されます。公開サイトに反映するには下のいずれかで保存してください。</p>
+        <div class="persist-actions">
+          <button class="lock-submit" id="gh-save">GitHubに保存して公開反映</button>
+          <button class="mini-btn" id="json-export">users.json をダウンロード</button>
+          <button class="mini-btn" id="gh-settings">GitHubトークン設定</button>
+        </div>
+        <div class="gh-token-row" id="gh-token-row" hidden>
+          <input type="password" id="gh-token" placeholder="GitHub fine-grained PAT (contents: read/write)" autocomplete="off" />
+          <button class="mini-btn" id="gh-token-save">保存</button>
+          <p class="hint">トークンはこの端末のブラウザにのみ保存され、公開サイトには一切含まれません。</p>
+        </div>
+        <p class="form-msg" id="persist-msg" hidden></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="./app.js" defer></script>
+</body>
+</html>

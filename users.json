@@ -1,0 +1,188 @@
+{
+  "v": 2,
+  "kdf": {
+    "iter": 200000
+  },
+  "users": [
+    {
+      "email": "chonufidesigner@gmail.com",
+      "salt": "p47nHt1Q6EM8b9M6QGWmjA==",
+      "role": "admin",
+      "wrapped": {
+        "releases": {
+          "n": "erByVRXI0oVChUtQ",
+          "c": "uZBcHEk9Oke07REvnHaL2OTU1b0FII3qPJTR6A2Tjv1VIsrETpXlpHhGdCLPMkG1"
+        },
+        "news": {
+          "n": "e8yhBXiKRIOcYl4/",
+          "c": "8ffax16sltHO3yUR0CIdtDF3ywo1T0tr+YIBVpUfaRP1b87+GXnUBpA4Ywe6cbh3"
+        },
+        "analysis": {
+          "n": "76iVCa9vX2dgiXWK",
+          "c": "hrk4rpxg68DkmW6qQYQH4YHoeMoXhs8XY05Dw+PALyCT3Fl5O/oOsKg7ADvknED/"
+        }
+      },
+      "created": "2026-06-14T07:41:17.559Z"
+    },
+    {
+      "email": "satoshi.mochizuki@hakuhodo.co.jp",
+      "salt": "omL1Yod2phjz7E5Mk8fqNg==",
+      "role": "viewer",
+      "wrapped": {
+        "releases": {
+          "n": "kg5m1l8C+KJgNVHj",
+          "c": "VZiOWgdvPGouDuZ5ZLVdOfjbt1v3rn9Bxz6I7F0hnbduEV4RGwzVkUwVmAfqDkZ9"
+        },
+        "news": {
+          "n": "0zJnuOT0/fqQu6KL",
+          "c": "zT1qUOvhDFYjnW7nvpg4NZ6F0nJgpJFjU8PcQJso+oYwf9w/dKLvvOOZvCWL8EKk"
+        },
+        "analysis": {
+          "n": "kKgifzUMWJoE52fS",
+          "c": "AI5aEUv3n7afGBLOoD3WC5jTklMAhFT4/eyVzzrtL2v92WS4AtjuVOSJNzWd1cp8"
+        }
+      },
+      "created": "2026-06-14T07:55:26.903Z"
+    },
+    {
+      "email": "woohee.chun@hakuhodo.co.jp",
+      "salt": "iYon+vTmGiwCrwgs0UjWFA==",
+      "role": "admin",
+      "wrapped": {
+        "releases": {
+          "n": "IFhrUc6rSEGSXe9r",
+          "c": "T0eKrk8lxZn5S5rcdLYPUMXKXSe/94IILlhaZAvr5aLSHaPVs7f0dBv8BeR44EKi"
+        },
+        "news": {
+          "n": "JcJaRGsvjjPWoGqM",
+          "c": "vSjzycXWLdWFguCTBpsrhy5ya8lPhtaMNmmnrWp8ZDnNb3G9S3ZDpHR0gCcxNtOv"
+        },
+        "analysis": {
+          "n": "wzL8LVXTtm5ALgMu",
+          "c": "wZHBs3HrV6huGQJ9Hqb+ap+iyaUY/Ec4JTRDpl4A/d0e+GuiuRzypfEZLXwOW1b8"
+        }
+      },
+      "created": "2026-06-14T07:55:58.833Z"
+    },
+    {
+      "email": "masao.baisho@hakuhodo.co.jp",
+      "salt": "AhX0SWsBv0U1QtOZhRGNCw==",
+      "role": "viewer",
+      "wrapped": {
+        "releases": {
+          "n": "OepvW4J2JQ5QETCS",
+          "c": "D5p1YmgLqnp5J4nDo39+h1JyLXltJq4SY8LpmVqx0h2af+ZOwylZ9A0NT9vfP7b7"
+        },
+        "news": {
+          "n": "enFxVwX7ThdEKQap",
+          "c": "3ezL+IBkUE9Imwf7YOT4+9x+CREshnQTkGtLGibOqeSGrb2lXbnMJaU2eIfK+d+n"
+        },
+        "analysis": {
+          "n": "J+EqmA3zC/+/YPo4",
+          "c": "mf9ThDZp0Okjb+hjy67RfpXQvDdj7JCnc4OfT6THCLlxkJX3S+jaoPPOh1ps0ETc"
+        }
+      },
+      "created": "2026-06-14T08:01:27.617Z"
+    },
+    {
+      "email": "makoto.a.sato@hakuhodo.co.jp",
+      "salt": "0gHVqhMtmSe3DjPq94OfLA==",
+      "role": "viewer",
+      "wrapped": {
+        "releases": {
+          "n": "we53afx3pAgdepaB",
+          "c": "9dArZvC3PssVO3zfBe1efbnlpKd/FCtpop0jOqXwtit9tJIOwcvPwMkobEzgjWQy"
+        },
+        "news": {
+          "n": "eFi6oLSwZSp4tN61",
+          "c": "2VuvV+eG9OtrY78eJDaxUPD6L6Fo60ROw98ScOmkVEiZIh6o0wsPyYcalL9M4Tqi"
+        },
+        "analysis": {
+          "n": "O9Mr9G0L1g0jSfNP",
+          "c": "TvYi1qhDjmMrd1e3XIk3S2WvfPassOduQHdwQh2vsGwBSrWf2u60b1cNYO/Q+UIP"
+        }
+      },
+      "created": "2026-06-14T08:01:45.693Z"
+    },
+    {
+      "email": "takaaki.tani@hakuhodo.co.jp",
+      "salt": "nzWyYSxA6GWFbiqJgpZf+w==",
+      "role": "viewer",
+      "wrapped": {
+        "releases": {
+          "n": "u88UUyUJ58Irt8yO",
+          "c": "kTwrTJs1/YTSLUHnte/85Ph5LHU4X6drA7Awr0l1OFcoS6hBntps7QKHUsYabLSw"
+        },
+        "news": {
+          "n": "wHb3321J94IHNox5",
+          "c": "4wAIMLO/1fAAExHBzBIg3MUYjNyTcE48+XNmIAAh4ax6ybSQ+pXW485bIVE+k6yn"
+        },
+        "analysis": {
+          "n": "+nDZ2WF3mR5nSwqE",
+          "c": "0LVHUjNq6AIWqlxHvL+JSGzW1IH7VtMPN3lJk+PH7rkkYe9zLhsqjMltUwVkxMFZ"
+        }
+      },
+      "created": "2026-06-14T08:14:29.316Z"
+    },
+    {
+      "email": "mario.yamada@hakuhodo.co.jp",
+      "salt": "9oxX9QkE4GnI38IlJNDKog==",
+      "role": "viewer",
+      "wrapped": {
+        "releases": {
+          "n": "cEtpWqFohM2FNYKC",
+          "c": "vApJuDSLFndFeJg2IGeNaZLSZr1AgUmOW30tJZYhXWMYI4BoQpQQ0zBVGTxTCXjQ"
+        },
+        "news": {
+          "n": "Yf0bSRht2DEH3kge",
+          "c": "9MlUvrkjemngfHYDLqcMDid97ylGDXJVLCFWQhYWjkml7OcIPZCb7Ishnh2eVYcG"
+        },
+        "analysis": {
+          "n": "BlfbqCzoz49Br4B4",
+          "c": "uDfKbNK/Ux5hNq4VBWL4hNXhoYsBsQBBm4nHDD7YTg9hnrrEovinnIdSOSXWfhIu"
+        }
+      },
+      "created": "2026-06-14T08:15:39.283Z"
+    },
+    {
+      "email": "makoto.takezawa@hakuhodo.co.jp",
+      "salt": "yJEHeS+M1BtwC4dRysvNLw==",
+      "role": "viewer",
+      "wrapped": {
+        "releases": {
+          "n": "4oenfzUd7RVJi+lX",
+          "c": "mEJn8JFZfhNeEj78dimtaU4czPdxIxMyhs1Q1/Or2W4FW2gkuRtY/RpOYYeoxg9T"
+        },
+        "news": {
+          "n": "Z7Z1e5a3jy3//HYf",
+          "c": "/EpwqKdjlX/b6Dd9ixMKvgxU2MnDmBCM14nCNDr2tHNeSVbbb6ou3zNQAVC2gbZ4"
+        },
+        "analysis": {
+          "n": "9cIg7FkjkSczYmdG",
+          "c": "LycBryVFPMU4DUajJYOSLBr/NKftVNuMfCnF2pvfKHrzgj+Y/MmvPo33HoHHTyoN"
+        }
+      },
+      "created": "2026-06-14T08:16:24.776Z"
+    },
+    {
+      "email": "akira.a.kamada@hakuhodo.co.jp",
+      "salt": "or7L5N9B9Fe86SZSYjrfNA==",
+      "role": "viewer",
+      "wrapped": {
+        "releases": {
+          "n": "CGOnFx7QyX9W5a72",
+          "c": "YjVBx7tu6mc1xNrXR/PlzqQUDiI4P3R9khwb6qtwfW8g+7InD8MTtWmvlts9WkrE"
+        },
+        "news": {
+          "n": "onqoxbdapWMiyY/k",
+          "c": "9ycQHPDyAYbiQVU7rU02kIDSuclZ20NzJRGxPua+iCy5T0jfZfDoV/EBQy8XpXnC"
+        },
+        "analysis": {
+          "n": "m5j1yri9VpmVemSZ",
+          "c": "HCerYxHLUOMiIejOxKgTMusEJyL/Q7bhOjezP3E/Fpx7NTa/kZ+sSFZ6qHRqSLyr"
+        }
+      },
+      "created": "2026-06-14T08:16:45.050Z"
+    }
+  ]
+}
